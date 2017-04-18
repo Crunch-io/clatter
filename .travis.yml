@@ -23,5 +23,6 @@ after_success:
     - mv public docs
     - git config user.email "systems+crunchbot@crunch.io"
     - git config user.name "Crunchbot"
+    - git add docs
     - git commit -m "Updating gh-pages (in /docs)" || true
     - git push --quiet > /dev/null 2>&1 || true
