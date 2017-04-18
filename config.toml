@@ -1,0 +1,27 @@
+baseURL = "/"
+languageCode = "en-us"
+title = "Crunch.io Dev Blog"
+theme = "kube"
+enableEmoji = true
+description = "New feature announcements, insights into our development process, and more from the Crunch.io dev team"
+Paginate = 4
+[Params]
+  RSSLink = "/index.xml"
+  author = "Crunch.io" # add your company name
+  github = "Crunch-io" # add your github profile name
+  twitter = "" # add your twitter profile
+  email = "support@crunch.io"
+  date_format = "Jan 2, 2006"
+
+# [[menu.main]]
+#     name = "Docs"
+#     weight = -100
+#     url = "/docs/"
+[[menu.main]]
+    name = "Blog"
+    weight = -100
+    url = "/blog/"
+# [[menu.main]]
+#     name = "Faq"
+#     weight = -100
+#     url = "/faq/"
