@@ -17,6 +17,7 @@ script:
 - hugo
 after_success:
 - git checkout gh-pages
+- git rm -rf .
 - mv public/* .
 - git add .
 - git commit -m "Updating gh-pages" || true
