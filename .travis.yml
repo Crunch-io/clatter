@@ -17,10 +17,10 @@ script:
 - hugo
 after_success:
 - git checkout gh-pages
-- mv public .
+- mv public/* .
 - git add .
 - git commit -m "Updating gh-pages" || true
-- git push --quiet > /dev/null 2>&1 || true
+- git push
 env:
   global:
     secure: D1wr7HoDVZBQ+e7bU/mHbtrv+6WQrGFCIl1S4XsyJEpgwa4Aiv1GhYW6GXLIQnr0qsd9YD3buChX/J8mx9qn4P/lNR3Jn25bPV+a5mDvvOniVBcKV93x0Se8uSGoZLJIA3CWEWix91nkMwSEVowMs6Sz5FLlbGya0jgMP/4JPJyYoNf+ajfpm5c3uFFO8JY81hSzD+7wgrzfWApqhMMLlJCH7f08d/FQBagGNnuDmCflG6Ltxek2fvXzP8UTrAyOYGExKNk9JWufh4+Oj7fCkuUifsjLl7hbMg3iithFDXiupbSoGokGuZRM5og2XmGs8eLzGKPi7S3gQM0UfmNUb5gMseTLNSDud3x7VqkTptOVh4rtm13TDHs2daVjFZ2oi/SBE7y1jKvnNDMn7wBgu+TkBcGU4cevd9uqmr6oYDKbeUH7crmlNOrCDhdEyWjji0lK0QqDyl0d1LiyiuJ9QIEWL8+dDpHxjB6V2fNdFSVG8nO1bk18qZgrx8Mris5lrJMCr9P5UkXlmoj4N4PKJeBR54B+Ytcto8QJKwAk+hmnNPAhKCW3AZ241NBoBO7mk+XJr4pVRn06RqnovIkZB/h3gIgJCmwc2JYrFXIeLcSccSAdyI90QgZGgo96mr6DJ1zih4mqvHGBNls+vVbPZsSd7DQHskUBfkYLk6g5w5Y=
