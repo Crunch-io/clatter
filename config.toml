@@ -1,7 +1,7 @@
 baseURL = "/"
 relativeURLs = true
 languageCode = "en-us"
-title = "Crunch.io Dev Blog"
+title = "The Crunch.io Developer Blog"
 theme = "kube"
 enableEmoji = true
 description = "New feature announcements, insights into our development process, and more from the Crunch.io dev team"
@@ -22,6 +22,10 @@ Paginate = 4
     name = "Blog"
     weight = -100
     url = "/blog/"
+[[menu.main]]
+    name = "Features"
+    weight = -100
+    url = "/features/"
 # [[menu.main]]
 #     name = "Faq"
 #     weight = -100

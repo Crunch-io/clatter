@@ -1,9 +1,9 @@
-<div itemscope itemtype="http://schema.org/CreativeWork">
+<div class="list-item" itemscope itemtype="http://schema.org/CreativeWork">
     <h2 class="title">
         <a href="{{ .Permalink }}" itemprop="headline">{{ .Title | emojify }}</a>
     </h2>
-    <hr>
     {{ if .Description }}
     <p itemprop="about">{{ .Description | emojify }}</p>
+    <time class="summary post-time">{{ partial "post/meta" . }}</time>
     {{ end }}
 </div>
