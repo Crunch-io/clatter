@@ -12,6 +12,11 @@
   </url>
   
   <url>
+    <loc>/features/hello-world/</loc>
+    <lastmod>2017-04-17T12:59:58-04:00</lastmod>
+  </url>
+  
+  <url>
     <loc>/tags/admin/</loc>
     <lastmod>2017-04-17T19:55:18-04:00</lastmod>
     <priority>0</priority>
@@ -29,14 +34,14 @@
   </url>
   
   <url>
-    <loc>/</loc>
+    <loc>/categories/features/</loc>
     <lastmod>2017-04-17T19:55:18-04:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>/categories/features/</loc>
-    <lastmod>2017-04-17T19:55:18-04:00</lastmod>
+    <loc>/features/</loc>
+    <lastmod>2017-04-17T12:59:58-04:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -48,6 +53,12 @@
   
   <url>
     <loc>/tags/</loc>
+    <lastmod>2017-04-17T19:55:18-04:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/</loc>
     <lastmod>2017-04-17T19:55:18-04:00</lastmod>
     <priority>0</priority>
   </url>

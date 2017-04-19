@@ -1,0 +1,113 @@
+@font-face {
+  font-family: 'AvenirLTStd';
+  src: url(https://app.crunch.io/AvenirLTPro-Heavy.ttf);
+  font-weight: 700;
+  font-style: normal; }
+@font-face {
+  font-family: 'AvenirLTStd';
+  src: url(https://app.crunch.io/AvenirLTPro-Roman.ttf);
+  font-weight: 400;
+  font-style: normal; }
+
+h1.title, h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
+    font-family: AvenirLTStd, Lato, sans-serif;
+    color: #444;
+    line-height: 1;
+}
+
+#hero {
+    text-align: left;
+    padding-top:0;
+    padding-bottom: 24px;
+}
+
+#hero h1 {
+    font-size: 36px;
+    line-height: 1.25;
+    max-width: 900px;
+    margin-bottom: 0;
+}
+
+#hero p {
+    padding:0;
+    font-size: 18px;
+    max-width: 900px;
+    margin-top: 0;
+}
+#hero p::before {
+    display:none;
+}
+
+#posts {
+    text-align: left;
+    max-width: 900px;
+    margin-top: 0;
+}
+
+#posts h2 a {
+    color: #444;
+}
+
+#posts h2 a:hover{
+    color: #0064a4;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+#posts [itemprop="about"] {
+    color: #888;
+    margin-bottom: 0;
+}
+
+.list-item {
+    margin-bottom: 18px;
+}
+ol, ol ol, ol ul, ul, ul ol, ul ul {
+    margin:0;
+}
+
+.button.outline {
+    color:#0064a4;
+    border-color: #0064a4;
+}
+
+.button.small {
+    padding: 9px 20px;
+}
+
+time.post-time {
+    color: #AAA;
+    margin: auto;
+    max-width:900px;
+    display:block;
+    font-size:12px;
+}
+
+.reading-time {
+    padding-left: 9px;
+}
+
+blockquote[itemprop="description"] {
+    font-style:normal;
+    margin:auto;
+    max-width: 900px;
+    padding:0;
+    border: none;
+}
+
+#post-box {
+    max-width: 900px;
+}
+
+.h1, h1 {
+    font-size: 30px;
+}
+.h2, h2 {
+    font-size 26px;
+}
+.h3, h3 {
+    font-size 22px;
+}
+.h4, h4 {
+    font-size 18px;
+}
