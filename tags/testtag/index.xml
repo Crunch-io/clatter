@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Testtag on The Crunch.io Developer Blog</title>
+    <link>/tags/testtag/</link>
+    <description>Recent content in Testtag on The Crunch.io Developer Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 17 Apr 2017 12:59:58 -0400</lastBuildDate>
+    
+	<atom:link href="/tags/testtag/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Hello. :smile:</title>
+      <link>/blog/hello-world/</link>
+      <pubDate>Mon, 17 Apr 2017 12:59:58 -0400</pubDate>
+      
+      <guid>/blog/hello-world/</guid>
+      <description>Is this thing on? Here&amp;rsquo;s an h2 Here&amp;rsquo;s an h3 Here&amp;rsquo;s an h4 Exciting things to come.</description>
+    </item>
+    
+    <item>
+      <title>New Feature</title>
+      <link>/features/hello-world/</link>
+      <pubDate>Mon, 17 Apr 2017 12:59:58 -0400</pubDate>
+      
+      <guid>/features/hello-world/</guid>
+      <description>Is this thing on? Here&amp;rsquo;s an h2 Here&amp;rsquo;s an h3 Here&amp;rsquo;s an h4 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi eget bibendum ipsum. Nulla felis orci, volutpat ut diam non, eleifend pharetra purus. Phasellus ac tellus elementum enim porta commodo. Suspendisse bibendum, nibh vel aliquet porttitor, diam neque tincidunt erat, a tempor mauris neque eget nulla. Etiam consequat mauris vel faucibus eleifend. Maecenas efficitur purus orci, eget dignissim mauris tincidunt quis.</description>
+    </item>
+    
+  </channel>
+</rss>
