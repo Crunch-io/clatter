@@ -1,11 +1,13 @@
 @font-face {
   font-family: 'AvenirLTStd';
   src: url(https://app.crunch.io/AvenirLTPro-Heavy.ttf);
+  src: url(fonts/AvenirLTPro-Heavy.ttf);
   font-weight: 700;
   font-style: normal; }
 @font-face {
   font-family: 'AvenirLTStd';
   src: url(https://app.crunch.io/AvenirLTPro-Roman.ttf);
+  src: url(fonts/AvenirLTPro-Roman.ttf);
   font-weight: 400;
   font-style: normal; }
 
@@ -13,6 +15,8 @@ h1.title, h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
     font-family: AvenirLTStd, Lato, sans-serif;
     color: #444;
     line-height: 1;
+    font-weight: 200;
+    margin-bottom: 3px;
 }
 
 #hero {
@@ -26,6 +30,7 @@ h1.title, h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
     line-height: 1.25;
     max-width: 900px;
     margin-bottom: 0;
+    color: #444;
 }
 
 #hero p {
@@ -100,14 +105,28 @@ blockquote[itemprop="description"] {
 }
 
 .h1, h1 {
-    font-size: 30px;
+    font-size: 26px;
+    color: #0064a4;
 }
 .h2, h2 {
-    font-size 26px;
+    font-size: 22px;
+    color: #107f65;
 }
 .h3, h3 {
-    font-size 22px;
+    font-size: 18px;
+    color: #732082;
 }
 .h4, h4 {
-    font-size 18px;
+    font-size: 16px;
+    color: #888;
+}
+
+#post {
+    font-size: 15px;
+    line-height: 1.5;
+}
+
+#post img {
+    padding: 6px 0;
+    display:block;
 }
