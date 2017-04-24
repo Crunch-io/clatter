@@ -6,10 +6,19 @@
     <description>Recent content on The Crunch.io Developer Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 20 Apr 2017 23:20:47 -0400</lastBuildDate>
+    <lastBuildDate>Mon, 24 Apr 2017 12:59:58 -0400</lastBuildDate>
     
 	<atom:link href="/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Hello. :smile:</title>
+      <link>/blog/hello-world/</link>
+      <pubDate>Mon, 24 Apr 2017 12:59:58 -0400</pubDate>
+      
+      <guid>/blog/hello-world/</guid>
+      <description>Check back here for behind-the-scenes views into building the Crunch platform.</description>
+    </item>
     
     <item>
       <title>Tab Book Improvements</title>
@@ -28,24 +37,6 @@ Export all on a single page  Layout options   The first new option is page layou
       
       <guid>/features/welcome/</guid>
       <description>Our first new feature announcement is&amp;hellip; the feature of announcing new features! Starting now, whenever we do a significant release that adds a new feature or notably enhances an existing one, we&amp;rsquo;ll post details about that here. Stay tuned for more!</description>
-    </item>
-    
-    <item>
-      <title>Monitor Your Client Activity</title>
-      <link>/blog/dataset-users/</link>
-      <pubDate>Mon, 17 Apr 2017 19:55:18 -0400</pubDate>
-      
-      <guid>/blog/dataset-users/</guid>
-      <description>Testing yada yada.</description>
-    </item>
-    
-    <item>
-      <title>Hello. :smile:</title>
-      <link>/blog/hello-world/</link>
-      <pubDate>Mon, 17 Apr 2017 12:59:58 -0400</pubDate>
-      
-      <guid>/blog/hello-world/</guid>
-      <description>Is this thing on? Here&amp;rsquo;s an h2 Here&amp;rsquo;s an h3 Here&amp;rsquo;s an h4 Exciting things to come.</description>
     </item>
     
   </channel>
