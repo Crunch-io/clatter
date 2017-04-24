@@ -12,7 +12,7 @@ Paginate = 4
   github = "Crunch-io" # add your github profile name
   twitter = "" # add your twitter profile
   email = "support@crunch.io"
-  date_format = "Jan 2, 2006"
+  date_format = "2 Jan 2006"
 
 # [[menu.main]]
 #     name = "Docs"
