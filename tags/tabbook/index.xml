@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Features on The Crunch.io Developer Blog</title>
-    <link>/features/</link>
-    <description>Recent content in Features on The Crunch.io Developer Blog</description>
+    <title>Tabbook on The Crunch.io Developer Blog</title>
+    <link>/tags/tabbook/</link>
+    <description>Recent content in Tabbook on The Crunch.io Developer Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Thu, 20 Apr 2017 23:20:47 -0400</lastBuildDate>
     
-	<atom:link href="/features/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="/tags/tabbook/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
@@ -19,15 +19,6 @@
       <guid>/features/tab-book-improvements/</guid>
       <description>We first released the tab book feature a while back, and since then, we&amp;rsquo;ve collected a number of great suggestions for how to enrich the feature. Our recent release includes several of those enhancements, most of which are new options available to you in the &amp;ldquo;export tab book&amp;rdquo; panel.
 Export all on a single page  Layout options   The first new option is page layout. A common request we received was to be able to export all tables in a tab book to a single sheet in the Excel workbook, rather than exporting each table to its own worksheet.</description>
-    </item>
-    
-    <item>
-      <title>Welcome to the New Feature Blog</title>
-      <link>/features/welcome/</link>
-      <pubDate>Tue, 18 Apr 2017 10:44:52 -0700</pubDate>
-      
-      <guid>/features/welcome/</guid>
-      <description>Our first new feature announcement is&amp;hellip; the feature of announcing new features! Starting now, whenever we do a significant release that adds a new feature or notably enhances an existing one, we&amp;rsquo;ll post details about that here. Stay tuned for more!</description>
     </item>
     
   </channel>

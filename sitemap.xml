@@ -1,5 +1,16 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+  xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  
+  <url>
+    <loc>/features/tab-book-improvements/</loc>
+    <lastmod>2017-04-20T23:20:47-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/features/welcome/</loc>
+    <lastmod>2017-04-18T10:44:52-07:00</lastmod>
+  </url>
   
   <url>
     <loc>/blog/dataset-users/</loc>
@@ -8,11 +19,6 @@
   
   <url>
     <loc>/blog/hello-world/</loc>
-    <lastmod>2017-04-17T12:59:58-04:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/features/hello-world/</loc>
     <lastmod>2017-04-17T12:59:58-04:00</lastmod>
   </url>
   
@@ -34,6 +40,18 @@
   </url>
   
   <url>
+    <loc>/tags/export/</loc>
+    <lastmod>2017-04-20T23:20:47-04:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/categories/feature/</loc>
+    <lastmod>2017-04-20T23:20:47-04:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>/categories/features/</loc>
     <lastmod>2017-04-17T19:55:18-04:00</lastmod>
     <priority>0</priority>
@@ -41,13 +59,19 @@
   
   <url>
     <loc>/features/</loc>
-    <lastmod>2017-04-17T12:59:58-04:00</lastmod>
+    <lastmod>2017-04-20T23:20:47-04:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>/categories/general/</loc>
     <lastmod>2017-04-17T12:59:58-04:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/tags/tabbook/</loc>
+    <lastmod>2017-04-20T23:20:47-04:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -65,7 +89,7 @@
   
   <url>
     <loc>/</loc>
-    <lastmod>2017-04-17T19:55:18-04:00</lastmod>
+    <lastmod>2017-04-20T23:20:47-04:00</lastmod>
     <priority>0</priority>
   </url>
   

@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Features on The Crunch.io Developer Blog</title>
-    <link>/features/</link>
-    <description>Recent content in Features on The Crunch.io Developer Blog</description>
+    <title>Feature on The Crunch.io Developer Blog</title>
+    <link>/categories/feature/</link>
+    <description>Recent content in Feature on The Crunch.io Developer Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Thu, 20 Apr 2017 23:20:47 -0400</lastBuildDate>
     
-	<atom:link href="/features/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="/categories/feature/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>

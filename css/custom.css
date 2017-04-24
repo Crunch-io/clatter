@@ -1,20 +1,39 @@
 @font-face {
   font-family: 'AvenirLTStd';
   src: url(https://app.crunch.io/AvenirLTPro-Heavy.ttf);
+  src: url(fonts/AvenirLTPro-Heavy.ttf);
   font-weight: 700;
   font-style: normal; }
 @font-face {
   font-family: 'AvenirLTStd';
   src: url(https://app.crunch.io/AvenirLTPro-Roman.ttf);
+  src: url(fonts/AvenirLTPro-Roman.ttf);
   font-weight: 400;
   font-style: normal; }
 
 h1.title, h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
     font-family: AvenirLTStd, Lato, sans-serif;
-    color: #444;
+    color: #565656;
     line-height: 1;
+    font-weight: 200;
+    margin-bottom: 10px;
+    margin-top: 20px;
+    clear: both;
 }
 
+body {
+    color:#565656;
+    font-family: AvenirLTStd, Lato, sans-serif;
+}
+
+p {
+    margin-bottom: 24px;
+    font-size: 16px;
+}
+
+a {
+    color: #0064a4;
+}
 #hero {
     text-align: left;
     padding-top:0;
@@ -26,6 +45,8 @@ h1.title, h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
     line-height: 1.25;
     max-width: 900px;
     margin-bottom: 0;
+    color: #565656;
+    font-weight: 200;
 }
 
 #hero p {
@@ -45,7 +66,7 @@ h1.title, h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
 }
 
 #posts h2 a {
-    color: #444;
+    color: #565656;
 }
 
 #posts h2 a:hover{
@@ -100,14 +121,46 @@ blockquote[itemprop="description"] {
 }
 
 .h1, h1 {
-    font-size: 30px;
+    font-size: 26px;
+    color: #565656;
+    font-weight: 700;
+    padding-top: 9px;
 }
 .h2, h2 {
-    font-size 26px;
+    font-size: 22px;
+    color: #107f65;
 }
 .h3, h3 {
-    font-size 22px;
+    font-size: 18px;
+    color: #732082;
 }
 .h4, h4 {
-    font-size 18px;
+    font-size: 16px;
+    color: #888;
+    font-weight: bold;
+}
+
+p+h2, p+h3, p+h4 {
+    margin-top: 0;}
+
+#post {
+    font-size: 16px;
+    line-height: 1.5;
+}
+
+#post img {
+    padding: 6px 0;
+    display:block;
+}
+
+.floating-right {
+    float: right;
+}
+
+.floating-left {
+    float: left;
+}
+
+.centered-image {
+    margin: 0 auto;
 }
