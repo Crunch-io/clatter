@@ -149,16 +149,17 @@ p+h2, p+h3, p+h4 {
 }
 
 #post img {
-    padding: 6px 0;
     display:block;
 }
 
 .floating-right {
     float: right;
+    padding-left: 9px;
 }
 
 .floating-left {
     float: left;
+    padding-right: 9px;
 }
 
 .centered-image img {
