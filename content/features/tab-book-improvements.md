@@ -18,7 +18,7 @@ The first new option is page layout. A common request we received was to be able
 The default of one-table-per-sheet is unchanged, but to export a tab book with all tables stacked on a single Excel worksheet, toggle the "layout" setting in the export panel.
 
 ## Include a table of contents
-{{< figure src="../images/TabBookToC.png" class="floating-right">}}
+{{< figure src="../images/TabBookToC.png" class="floating-left">}}
 
 A table of contents can also be useful when it comes to navigating a large tab book. If you choose to add a table of contents to your tab book, the first sheet will show a list of all tables in the tab book. You can click an item to navigate directly to it – with to the relevant sheet if exporting to multiple sheets or to the appropriate place in the single large table if exporting to a single page. This provides another easy way to navigate through a large tab book.
 
