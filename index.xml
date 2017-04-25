@@ -27,7 +27,7 @@
       
       <guid>/features/tab-book-improvements/</guid>
       <description>We first released the tab book feature a while back, and since then, we&amp;rsquo;ve collected a number of great suggestions for how to enrich the feature. Our recent release includes several of those enhancements, most of which are new options available to you in the &amp;ldquo;export tab book&amp;rdquo; panel.
-Export all on a single page  Layout options   The first new option is page layout. A common request we received was to be able to export all tables in a tab book to a single sheet in the Excel workbook, rather than exporting each table to its own worksheet.</description>
+Export all on a single page  The first new option is page layout. A common request we received was to be able to export all tables in a tab book to a single sheet in the Excel workbook, rather than exporting each table to its own worksheet.</description>
     </item>
     
     <item>

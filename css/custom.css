@@ -161,6 +161,6 @@ p+h2, p+h3, p+h4 {
     float: left;
 }
 
-.centered-image {
+.centered-image img {
     margin: 0 auto;
 }
