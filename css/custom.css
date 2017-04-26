@@ -165,3 +165,34 @@ p+h2, p+h3, p+h4 {
 .centered-image img {
     margin: 0 auto;
 }
+
+#top-brand img {
+    width: 154px;
+}
+
+#nav-toggle-brand {
+    width: 180px;
+    margin: auto;
+}
+
+#top #top-nav-extra span, #top #top-nav-extra a {
+    border: none;
+    text-transform: uppercase;
+    color: #888;
+}
+
+#top #top-nav-extra span:hover, #top #top-nav-extra a:hover {
+    color: #0064a4;
+}
+
+#top #top-nav-main a {
+    color: #565656;
+}
+
+#top #top-nav-main a:hover {
+    color: #0064a4;
+}
+
+#top {
+    height: 60px;
+}
