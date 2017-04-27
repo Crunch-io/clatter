@@ -16,7 +16,7 @@ script:
 - git clone https://github.com/jeblister/kube.git ./themes/kube
 - hugo
 after_success:
-- git clone https://${GH_TOKEN}@github.com/ta-da.git ../ta-da
+- git clone https://${GH_TOKEN}@github.com/Crunch-io/ta-da.git ../ta-da
 - cp -r public ../ta-da/dev
 - git checkout gh-pages
 - cp -r public/* .
