@@ -17,6 +17,7 @@ script:
 - hugo
 after_success:
 - git clone https://${GH_TOKEN}@github.com/Crunch-io/ta-da.git ../ta-da
+- rm -rf ../ta-da/dev
 - cp -r public ../ta-da/dev
 - git checkout gh-pages
 - cp -r public/* .
