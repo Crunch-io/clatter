@@ -1,8 +1,8 @@
 +++
 date = "2017-04-24T12:59:58-04:00"
-description = ":writing_hand: Here we go."
+description = "Here we go :writing_hand: "
 draft = false
-title = "Hello. :smile:"
+title = ":smile: Hello."
 weight = 20
 tags = []
 categories = ["general"]
