@@ -13,7 +13,7 @@ A wealth of information can be locked in Text variables. Our new “sentiment an
 {{< figure src="../images/SentimentClassify.png" class="floating-right">}}
 This first draft of sentiment analysis uses a modern (slightly American inflected) English lexicon, tailored especially for terms that occur in social media:  
 
-> [Hutto, CJ and Gilbert, E. (2014) **VADER: A Parsimonious Rule-based Model for Sentiment Analysis of Social Media Text**. Eighth International Conference on Weblogs and Social Media (ICWSM-14). Ann Arbor, MI, June 2014](https://github.com/cjhutto/vaderSentiment).
+> [Hutto, CJ and Gilbert, E. (2014) "VADER: A Parsimonious Rule-based Model for Sentiment Analysis of Social Media Text". Eighth International Conference on Weblogs and Social Media (ICWSM-14). Ann Arbor, MI, June 2014](https://github.com/cjhutto/vaderSentiment).
 
 We have plenty of plans for future work in this area, including other languages, a way to provide your own tailored lexicons, coding of data into a broader range of categories, specifying your own coding for Text data, and more.
 

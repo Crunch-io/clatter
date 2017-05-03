@@ -200,3 +200,7 @@ p+h2, p+h3, p+h4 {
 .post-footer {
     clear: both;
 }
+
+blockquote {
+    font-style: normal;
+}
