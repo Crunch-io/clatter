@@ -1,4 +1,4 @@
-<p>
+<p class="post-footer">
   Published
   {{ if ne .Site.Params.hide_author true }}
     {{ with .Params.author }}
@@ -15,6 +15,5 @@
   {{ end }}
   {{ with .Params.tags }}
     and tagged {{ delimit (apply (apply (sort .) "partial" "post/tag-link" ".") "chomp" ".") ", " " and " }}
-  {{ end }}
-  using <span itemprop="wordCount">{{ .WordCount }}</span> words.
+  {{ end }}.
 </p>
