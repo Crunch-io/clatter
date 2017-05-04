@@ -21,5 +21,3 @@ The initial version of this feature uses a modern (slightly American inflected) 
 > [Hutto, CJ and Gilbert, E. (2014) "VADER: A Parsimonious Rule-based Model for Sentiment Analysis of Social Media Text". Eighth International Conference on Weblogs and Social Media (ICWSM-14). Ann Arbor, MI, June 2014](https://github.com/cjhutto/vaderSentiment).
 
 We have plenty of plans for future work in this area, including other languages, a way to provide your own tailored lexicons, coding of data into a broader range of categories, specifying your own coding for text data, and more. Let us know what you’d like to see!
-
-{{<h2></h2>}}
