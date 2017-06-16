@@ -1,8 +1,8 @@
 +++
 date = "2017-06-12T23:20:47-04:00"
 draft = false
-title = "New labs feature: Draft and Publish"
-description = "Prepare and review changes before pushing them to clients"
+title = "Deliver New Data When You're Ready"
+description = "Our new draft-and-publish feature allows you to prepare and review changes to data before pushing them to everyone."
 weight = 20
 tags = ["draft and publish", "clients"]
 categories = ["feature"]
@@ -30,4 +30,4 @@ While a draft exists, we prevent the original and draft datasets from getting ou
 
 Once you are satisfied with the draft, your changes can be published by returning to dataset properties in the draft and clicking **Publish**. The original dataset will be updated with the changes from the draft and the draft will be deleted.
 
-We are confident this feature will make managing data for your clients a better experience for you and for them. If you have any feedback about draft and publish (or anything else!), please don’t hesitate to let us know at support@crunch.io.
+We are confident this feature will make managing data for your clients a better experience for you and for them. If you have any feedback about draft and publish (or anything else!), please don’t hesitate to let us know at [support@crunch.io](mailto:support@crunch.io).

@@ -1,8 +1,8 @@
 +++
 date = "2017-05-03T23:20:47-04:00"
 draft = false
-title = "New labs feature: Sentiment analysis"
-description = "Classify text data with natural language processing"
+title = "New Labs Feature: Sentiment Analysis"
+description = "At the press of a button, you can classify text data with natural language processing."
 weight = 20
 tags = ["text", "derived variables", "sentiment analysis"]
 categories = ["feature"]
