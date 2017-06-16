@@ -1,7 +1,7 @@
 +++
 date = "2017-06-12T23:20:47-04:00"
 draft = false
-title = "Deliver New Data When You're Ready"
+title = "Deliver New Data When You’re Ready"
 description = "Our new draft-and-publish feature allows you to prepare and review changes to data before pushing them to everyone."
 weight = 20
 tags = ["draft and publish", "clients"]
