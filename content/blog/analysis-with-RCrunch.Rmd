@@ -217,14 +217,14 @@ But we can do this even quicker and easier with the power of Crunch. Not only ar
 clearCache() # let's make this a fair fight
 system.time({
     is.na(categories(so_data$HomeRemote)) <- "NA"
-    indeces <- match(c("Never",
+    cats_in_order <- c("Never",
                        "A few days each month",
                        "Less than half the time, but at least one day each week",
                        "About half the time",
                        "More than half, but not all, the time",
                        "All or almost all the time (I'm full-time remote)",
-                       "It's complicated", "NA", "No Data"), names(categories(so_data$HomeRemote)))
-    categories(so_data$HomeRemote) <- categories(so_data$HomeRemote)[indeces]    
+                       "It's complicated", "NA", "No Data")
+    categories(so_data$HomeRemote) <- categories(so_data$HomeRemote)[cats_in_order]    
 })
 ```
 

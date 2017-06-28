@@ -66,7 +66,7 @@ system.time({
 ```
 
     ##    user  system elapsed
-    ##   0.095   0.005   0.565
+    ##   0.094   0.005   0.576
 
 Using the Crunch package's built-in tools, we see a speed up of approaching 5 times.
 
@@ -76,7 +76,7 @@ system.time({nrow(so_data)})
 ```
 
     ##    user  system elapsed
-    ##   0.007   0.000   0.143
+    ##   0.007   0.000   0.334
 
 Summary statistics
 ------------------
@@ -182,7 +182,7 @@ system.time({
 ```
 
     ##    user  system elapsed
-    ##   0.233   0.011   0.880
+    ##   0.191   0.008   0.846
 
 ``` r
 clearCache() # let's make this a fair fight
@@ -198,7 +198,7 @@ system.time({
 ```
 
     ##    user  system elapsed
-    ##   0.089   0.001   0.931
+    ##   0.088   0.003   0.633
 
 Again, using the Crunch package's methods are faster. But not only that, we don't have to worry about the information in each column staying in the same order. With the download then process approach, if we reordered the `JobSatisfaction` column, our `is_all_remote` mask would no longer correspond to the correct values, and our means would be totally wrong[^1]. Using Crunch filters and the mean calculation provided by the Crunch package is immune to this, because the values are connected within rows on the server.
 
@@ -332,7 +332,7 @@ system.time({
 ```
 
     ##    user  system elapsed
-    ##   0.313   0.006   3.253
+    ##   0.321   0.006   2.769
 
 But we can do this even quicker and easier with the power of Crunch. Not only are these changes fewer lines of R code, but they also make their changes on the server, so any collaborators will be able to see the changes you make immediately. No more waiting around to download data or send Crunch a new round of cleaned exports.
 
@@ -340,19 +340,19 @@ But we can do this even quicker and easier with the power of Crunch. Not only ar
 clearCache() # let's make this a fair fight
 system.time({
     is.na(categories(so_data$HomeRemote)) <- "NA"
-    indeces <- match(c("Never",
+    cats_in_order <- c("Never",
                        "A few days each month",
                        "Less than half the time, but at least one day each week",
                        "About half the time",
                        "More than half, but not all, the time",
                        "All or almost all the time (I'm full-time remote)",
-                       "It's complicated", "NA", "No Data"), names(categories(so_data$HomeRemote)))
-    categories(so_data$HomeRemote) <- categories(so_data$HomeRemote)[indeces]
+                       "It's complicated", "NA", "No Data")
+    categories(so_data$HomeRemote) <- categories(so_data$HomeRemote)[cats_in_order]
 })
 ```
 
     ##    user  system elapsed
-    ##   0.064   0.001   0.676
+    ##   0.055   0.001   1.528
 
 Now the categories look much better: "NA" is marked as missing, the responses are ordered from least to most home/remote time.
 
