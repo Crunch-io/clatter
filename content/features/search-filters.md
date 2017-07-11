@@ -1,6 +1,6 @@
 +++
-title = "Searching on Crunch (just got better)"
-description = "With these three new search filters, you can refine your queries and find the datasets or variables you are looking for faster."
+title = "Refine your searches on Crunch"
+description = "With these new search filters, you can refine your queries and find the datasets or variables you are looking for faster."
 date = "2017-07-10T12:59:58-04:00"
 weight = 20
 draft = false
@@ -26,7 +26,7 @@ On the left, the **Type filter** lets you specify **Datasets**, **Variables**, o
 On the right, the **Date filter** lets you limit your search to recent datasets.
 
 
-Select a time period to limit your search to that time. We use the **End Date** property of the dataset to determine the date of a dataset. This property can be viewed in [Dataset Properties](http://support.crunch.io/crunch/crunch_dataset-properties.html), and is typically set by the data owner when the dataset is imported.
+We use the **End Date** property of the dataset to determine the date of a dataset. This property can be viewed in [Dataset Properties](http://support.crunch.io/crunch/crunch_dataset-properties.html), and is typically set by the data owner when the dataset is imported.
 
 ## Search in a Project
 {{< figure src="../images/SearchProject.png" class="floating-left">}}
