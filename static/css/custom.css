@@ -204,3 +204,7 @@ p+h2, p+h3, p+h4 {
 blockquote {
     font-style: normal;
 }
+
+.halfwidth {
+    max-width: 450px;
+}
