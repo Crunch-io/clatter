@@ -4,7 +4,7 @@ date = "2017-08-08T21:12:10-07:00"
 description = "Building software for a specific target audience can be challenging, particularly when developers' intuitions are very different from those of that audience. At a recent all-hands meeting, we exploited a unique opportunity to turn our developers into legitimate users of our product."
 draft = false
 tags = []
-title = "Developers as users"
+title = "Developers As Users"
 weight = 20
 
 +++
@@ -15,7 +15,7 @@ These features are great if you work at a research company, or in a marketing de
 
 {{< figure src="../images/ice-cream-display-figure.jpg" class="floating-left" attr="Ice cream eating ice cream" width="287" height="384" attrlink="https://commons.wikimedia.org/wiki/File:Ice_cream_display_figure.JPG">}}
 
-We routinely do many things to open ourselves to our users, from discussions and screensharing with users who report bugs or request features to periodic full product demos to the team. Those are all good ways to learn more about our users and how they think, and they definitely help increase our empathy. However, there's no better way to increase empathy with the users than to become users yourself: to eat your own ice cream (this is also known as [eat your own dog food](https://en.wikipedia.org/wiki/Eating_your_own_dog_food) although ice cream appears to be more popular amonst our team). Under normal circumstances, though, our development team doesn't have a real reason to use our product---it's not designed to help us write software.
+We routinely do many things to open ourselves to our users, from discussions and screensharing with users who report bugs or request features to periodic full product demos to the team. Those are all good ways to learn more about our users and how they think, and they definitely help increase our empathy. However, there's no better way to increase empathy with the users than to become users yourself: to eat your own ice cream (also known as [eating your own dog food](https://en.wikipedia.org/wiki/Eating_your_own_dog_food), although ice cream appears to be more popular amongst our team). Under normal circumstances, though, our development team doesn't have a real reason to use our product---it's not designed to help us write software.
 
 At our all-hands meetup a few weeks ago near Tahoe, we gave the team a special assignment: Import, clean, and analyze the [Stack Overflow developer survey](https://insights.stackoverflow.com/survey/). Find something about software developers that you think our CEO should know, and deliver results to him, all using our product. It's a great exercise because the dataset is about things developers are more likely to care about---themselves and developers like them---and it received a bit of [popular attention](https://stackoverflow.blog/2017/06/15/developers-use-spaces-make-money-use-tabs/)   [and reaction](http://evelinag.com/blog/2017/06-20-stackoverflow-tabs-spaces-and-salary/). At the same time, it's a survey---so our product should be ideal for exploring it.
 
@@ -23,20 +23,11 @@ At our all-hands meetup a few weeks ago near Tahoe, we gave the team a special a
 
 The results were great. Over the next several weeks, we'll be writing more about some of the work that various people on the team did and what we found in the data. One of the fun things about the experience was seeing how different people took the open-ended prompt and ran with it in very different directions, exploiting a broad spectrum of features of the Crunch platform.
 
-We colletively created 15 different reports that covered topics from gender representation in tech to job satisfaction internationally. Just to give a preview, one result of the project is a CrunchBox, our public widget that allows our users to embed data visualizations in their online articles or blog posts. Click on the graph below to pick different variables to analyze and change the visualization settings:
+We collectively created 15 different reports that covered topics from gender representation in tech to job satisfaction internationally. These reports took many different forms: there were slide decks shared with the team in the web app, Excel workbooks exported, iPython notebooks, and data visualizations done in R. Some also created a CrunchBox, our public widget that allows our users to embed data visualizations in online articles or blog posts (like this!). Here's an example: click on the graph below to pick different variables to analyze and change the visualization settings.
 
 <div style="text-align: center;">
-<iframe src="https://s.crunch.io/widget/index.html#/ds/b877914954c7e82db199753717ddaef9/row/00006a?viz=groupedBarPlot&cp=percent&dp=0&grp=stack" width="600" height="480"></iframe></div>
-<!-- TODO:
-* Better default view (esp. map)
-* Styling/centering/add title
- -->
+<iframe src="https://s.crunch.io/widget/index.html#/ds/b877914954c7e82db199753717ddaef9/row/00001c/column/000003?viz=geo&cp=percent&dp=0&grp=stack" width="600" height="480"></iframe></div>
 
 # What does our ice cream taste like?
 
 Overall, we felt that our ice cream tasted pretty good! Yet, as with any fine dining experience, the difference between a good meal and an excellent meal comes down to the details in the service and presentation. We noticed a lot of little bugs and usability issues, rough edges that our everyday users know how to navigate but that stick out to an untrained new user (like us), or perhaps details that aren't quite right but that aren't critical enough that our users bother to report them. But with our attention on them, and with our inherent drive to build a better product, we not only saw them but said, "Hey, let me just fix that right now." We fixed about 20 issues in the web app and pushed a bunch of enhancements to our R and Python libraries as well.
-
-<!-- TODO: say more about our team culture -->
-
-<!--
-The process was further illuminating because it revealed to everyone how we could be doing our manual pre-release testing better, more like real users. We found lots of little things to improve (and some bigger ideas for how to do even better) because we tried to use the product to do actual work with actual, somewhat messy data, not just clicking through to make sure that a new feature does what it is supposed to. In many cases, it wasn't that we found that the features we had didn't work, but rather that they didn't perform as well with specific features of this dataset, or that the features didn't flow together or interact with each other as they should have. -->
