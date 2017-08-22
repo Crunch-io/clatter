@@ -18,13 +18,13 @@ script:
 after_success:
 - git clone https://${GH_TOKEN}@github.com/Crunch-io/ta-da.git ../ta-da
 - cd ../ta-da
-- rm -rf dev
+- git rm -rf dev
 - cp -r ../clatter/public/ dev
 - git add .
 - git commit -m "Updating dev blog" || true
 - git push origin master || true
 - git checkout hugo
-- rm -rf static/dev
+- git rm -rf static/dev
 - cp -r ../clatter/public/ static/dev
 - git add .
 - git commit -m "Updating dev blog on new site" || true
