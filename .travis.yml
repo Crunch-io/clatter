@@ -17,18 +17,26 @@ script:
 - hugo
 after_success:
 - git clone https://${GH_TOKEN}@github.com/Crunch-io/ta-da.git ../ta-da
-- rm -rf ../ta-da/dev
-- cp -r public ../ta-da/dev
+- cd ../ta-da
+- rm -rf dev
+- cp -r ../$TRAVIS_REPO_SLUG/public dev
+- git add .
+- git commit -m "Updating dev blog" || true
+- git push origin master || true
+- git checkout hugo
+- rm -rf static/dev
+- cp -r ../$TRAVIS_REPO_SLUG/public static/dev
+- git add .
+- git commit -m "Updating dev blog on new site" || true
+- git push origin master || true
+- cd ../$TRAVIS_REPO_SLUG
 - git checkout gh-pages
 - cp -r public/* .
 - rm -rf public
 - git add .
 - git commit -m "Updating gh-pages" || true
 - git push origin gh-pages > /dev/null 2>&1 || true
-- cd ../ta-da
-- git add .
-- git commit -m "Updating dev blog" || true
-- git push origin master > /dev/null 2>&1 || true
+
 env:
   global:
     secure: BwBP/8PVCPvYyF0hoJSblSSfN822ed0zqTYb8oCG0yB4Pll9mIBLhL8IzGZs4TLOw/Za4ApDESr2O/LkNfIdnZuMMtgm3ANEBihfVBpZmgxHaNZv2GGNk4rNjWpUjyIwqMAjUkO0lRBBfEmOfN5bjmfhwhn+wy8/cJccmaTUg/IDJ0JAw+Yzy3ZT0xfz2tybN6pZ7Ul4jM1wULRWlxdRzITnYR5OgkPthveCryIod8HJgRldxaI6r7dIbgBwSYBF0DoUFykBOxmd/achIe3B3Hle/Ahb1KwCEkAaCM+5riDnvREvvZZ+CjUoXsnRgTFWe6rDhlU/9L2sJVPh6mF7MH6v+VoaoExEb+xls9J+mott5EAaSuu2vYyqkSYGZ+6aqoMyUPZ1fN3+MtY/Pz1Ch/1ZH66gnoLihQMBhulvNXGujl8O6hOwQKSDrw2Y0ECdZ3clPG6OVOnJ34bYhOmT15ArCvW6Aio/OPhwC5/wIRl3/OdGQe2RGzWFsG9juu5y6pBhkf2RQQgt72l1NAwQM0vE4YOP4xLYOhaMNlX+gIOqbel98VmEK8kHp3pfruWBt+mR1xNSUTtkqTFY6ifSyn/gTRlG74sQegabzpee7Gl63A9yuI56OlCbWZmWJV30f8gzJHSH2kKNjUmmTNcqisllfFOXaPy01bIqGd7T/zw=
