@@ -28,7 +28,7 @@ after_success:
 - cp -r ../clatter/public/ static/dev
 - git add .
 - git commit -m "Updating dev blog on new site" || true
-- git push origin master || true
+- git push origin hugo || true
 - cd ../clatter
 - git checkout gh-pages
 - cp -r public/* .
