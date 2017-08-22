@@ -19,7 +19,9 @@ Since the last CRAN release in June (1.17.0), some significant features have bee
 ## Mapping
 
 * Crunch-hosted geographic data can now be set and updated. Use `geo()` on a variable to see if there is already associated geographic data.
-* `addGeoMetadata()` function to match a text or categorical variable with available geodata based on the contents of the variable and metadata associated with Crunch-hosted geographic data. This function looks at the contents of the variable and the currently available geodata files that are available on Crunch. If there is a single match, you can set the geographic connection with `geo(ds$state) <- addGeoMetadata(ds$state)`. If there isn't a single match, you will be given a set of geodata files that could match, and you can match them as follows (this information will be provided to you ):
+* Use the `addGeoMetadata()` function to match a text or categorical variable with available geodata based on the contents of the variable and metadata associated with Crunch-hosted geographic data.
+
+This function looks at the contents of the variable and the currently available geodata files that are available on Crunch. If there is a single match, you can set the geographic connection with `geo(ds$state) <- addGeoMetadata(ds$state)`. If there isn't a single match, you will be given a set of geodata files that could match, and you can match them as follows (this information will be provided to you ):
 ```{r}
 geo(ds$country) <- addGeoMetadata(ds$country)
 
@@ -35,7 +37,7 @@ geo(ds$country) <- CrunchGeography(
 )
 ```
 
-Once a variable has been associated with geographic data, you can use the Crunch webapp to make [beautiful choropleths](link to crunchbox) with drag and drop ease. We're also working on a new R package for working with Crunch's geographic data, so watch this space for news about that.
+Once a variable has been associated with geographic data, you can use the Crunch webapp to make [beautiful choropleths](https://s.crunch.io/widget/index.html#/ds/b877914954c7e82db199753717ddaef9/row/00001c/column/000003?viz=geo&cp=percent&dp=0&grp=stack) with drag and drop ease. We're also working on a new R package for working with Crunch's geographic data, so watch this space for news about that.
 
 See `?geo` for more detailed documentation and information.
 
