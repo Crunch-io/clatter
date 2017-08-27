@@ -1,0 +1,315 @@
+---
+title: "Analysis with Crunch’s R Package"
+description: "Using Crunch to speed up common analysis steps"
+tags: []
+categories: ["general"]
+always_allow_html: yes
+output: 
+    md_document:
+        dev: svg
+        preserve_yaml: true
+        variant: markdown_github
+---
+
+```{r set-options, echo=FALSE}
+options(width = 110)
+```
+
+Crunch provides a collaborative platform for data analytics. Our app allows for simple, visual exploration and analysis, but we know that data scientists and developers want to harness the power of R, Python, and other languages to manipulate, cleanse, and analyze data. Crunch was designed to make collaboration easy and this doesn’t stop at the transition between Crunch servers and languages like R and Python. Crunch provides an [R package](https://github.com/crunch-io/rcrunch/) (as well as a [Python module](https://github.com/crunch-io/scrunch/)) that makes repetitive tasks easy to automate, in a way that feels like an integrated part of R. 
+
+Crunch’s R package makes many common cleaning and analysis operations easy. Best of all, it minimizes the amount of data we need to transfer back and forth between Crunch and our local R session. This not only speeds up analysis, but updates data in Crunch instantly so collaborators can see the changes and work with the most up-to-date data as possible.
+
+## Setup
+First we need to load the Crunch package, sign in with our Crunch credentials, and then load the dataset that we would like to analyze. We are using data from [The Stack Overflow annual developer survey](https://insights.stackoverflow.com/survey/?utm_source=so-owned&utm_medium=blog&utm_campaign=dev-survey-2017&utm_content=blog-link&utm_term=data). We’ve already imported the data from the csv they provided. We’ll show you in another post soon some of those import and cleaning steps. Finally, we make a fork of the dataset so that we can return to the first, cleaned dataset easily if we need to.
+```{r results='hide',message=F, warning=F}
+library(crunch)
+library(httpcache)
+library(ggplot2)
+library(coefplot)
+library(knitr) 
+login()
+so_data_orig <- loadDataset("Stack Overflow Developer Survey (2017)")
+so_data <- forkDataset(so_data_orig, "Stack Overflow Developer Survey (2017) fork")
+```
+
+Now our data is ready to be used with R in the `so_data` object. The first thing to note is that we haven’t actually transferred all of the data in the dataset from Crunch servers to our local computer (which could take considerable time for large datasets). Instead, we’ve just transferred a small amount of metadata about the dataset that we can use to communicate with Crunch servers. We can take a peak at the dataset and the Crunch package gives us some helpful information, but « Ceci n’est pas un dataset ».
+```{r include=FALSE}
+show_data <- show(so_data)
+```
+```{r results='hide'}
+so_data
+```
+```{r echo=FALSE}
+to_print <- c(show_data[1:12], "... and many more variables")
+cat(paste(to_print, collapse="\n"))
+```
+
+
+## Dataset shape
+This dataset object is designed to use many of these same functions that dataframes and other R objects use. This helpful for getting features like dimensions of the whole data set.
+
+```{r}
+dim(so_data)
+```
+
+Using functions like this with datasets will generally be much faster than trying more roundabout ways of looking at data summaries. For example, if we wanted to know how many rows there are in our dataset, we could pull one of the columns, and then use `length` to count how many elements there are. Below, we use `as.vector`[^fn1] a few times. This Crunch package function is designed to pull one variable as an R vector. This reads all of the data from Crunch and transfers it to our local R session. 
+```{r}
+respondent_col <- as.vector(so_data$Respondent)
+length(respondent_col)
+```
+
+But we don’t actually need to pull all of the data from a column just to know how many rows there are, we can use `nrow` with the dataset object, and the Crunch package is smart enough to use the metadata it already has to tell us how many rows there are.
+```{r}
+nrow(so_data)
+```
+
+The time savings are not trivial either, pulling the data:
+```{r}
+clearCache() # let’s make this a fair fight
+system.time({
+    respondent_col <- as.vector(so_data$Respondent)
+    length(respondent_col)  
+})
+```
+
+Using the Crunch package’s built-in tools, we see a speed up of approaching 5 times. This is a small speed up, but consider that this is just the 2017 data, and Stack Overflow has been conducting this survey for 10 years. Thousands of columns, of hundreds of thousands or millions of rows, is not R’s strong suit, and we have been surprised at how quickly that limit can be reached with real-world data.
+```{r}
+clearCache() # let’s make this a fair fight
+system.time({nrow(so_data)})
+```
+
+## Summary statistics
+Dimensions aren’t the only time we can use Crunch to help us speed up our analyses. Crunch can also calculate some summary statistics on the server rather than transferring all of the data, and then running them locally. Let’s look at the `min`, `mean`, `sd`, and `max` of the `JobSatisfaction` variable.
+
+```{r}
+min(so_data$JobSatisfaction, na.rm = TRUE)
+mean(so_data$JobSatisfaction, na.rm = TRUE)
+sd(so_data$JobSatisfaction, na.rm = TRUE)
+max(so_data$JobSatisfaction, na.rm = TRUE)
+```
+
+Grabbing summary statistics for columns of the whole dataset without needing to transfer data from Crunch servers is nice, but we’re not going to get very far with just that. Say we want to see if there are differences in job satisfaction between people who never work from home and those who are full-time remote.
+
+We could pull down the `HomeRemote` column, and make a mask for rows that correspond to our three categories locally, then pull down the `JobSatsifaction` column, and find the mean of each of the groups.
+```{r}
+remote_col <- as.vector(so_data$HomeRemote)
+is_all_remote <- remote_col == "All or almost all the time (I'm full-time remote)"
+is_some_remote <- remote_col != "All or almost all the time (I'm full-time remote)" & remote_col != "Never"
+is_never_remote <- remote_col == "Never"
+
+job_satisfaction <- as.vector(so_data$JobSatisfaction)
+```
+```{r}
+mean(job_satisfaction[is_all_remote], na.rm=TRUE)
+mean(job_satisfaction[is_some_remote], na.rm=TRUE)
+mean(job_satisfaction[is_never_remote], na.rm=TRUE)
+```
+
+But as we saw before this means transferring at least two full columns worth of data, when Crunch has the ability to do all of this on the server with the use of filters. Using filters on Crunch datasets is easy and designed to approximate how we use filters on dataframes. Simply specify a logical expression (in this case it is a _Crunch logical expression_), and then we can use the same `mean` functions we would use normally. In this case, instead of pulling the entirety of each column from the server, instead the Crunch package sends the filter expression, the data is filtered on the server, and then the means are returned.
+```{r}
+all_remote <- so_data[so_data$HomeRemote == "All or almost all the time (I'm full-time remote)", ]
+some_remote <- so_data[so_data$HomeRemote != "All or almost all the time (I'm full-time remote)" & so_data$HomeRemote != "Never", ]
+never_remote <- so_data[so_data$HomeRemote == "Never", ]
+```
+```{r}
+mean(all_remote$JobSatisfaction, na.rm=TRUE)
+mean(some_remote$JobSatisfaction, na.rm=TRUE)
+mean(never_remote$JobSatisfaction, na.rm=TRUE)
+```
+
+Let’s see how these two approaches compare time-wise.
+```{r}
+clearCache() # let’s make this a fair fight
+system.time({
+    remote_col <- as.vector(so_data$HomeRemote)
+    is_all_remote <- remote_col == "All or almost all the time (I'm full-time remote)"
+    is_some_remote <- remote_col != "All or almost all the time (I'm full-time remote)" & remote_col != "Never"
+    is_never_remote <- remote_col == "Never"
+    
+    job_satisfaction <- as.vector(so_data$JobSatisfaction)
+    mean(job_satisfaction[is_all_remote], na.rm=TRUE)
+    mean(job_satisfaction[is_some_remote], na.rm=TRUE)
+    mean(job_satisfaction[is_never_remote], na.rm=TRUE)
+})
+```
+
+```{r}
+clearCache() # let’s make this a fair fight
+system.time({
+    all_remote <- so_data[so_data$HomeRemote == "All or almost all the time (I'm full-time remote)", ]
+    never_remote <- so_data[so_data$HomeRemote == "Never", ]
+    some_remote <- so_data[so_data$HomeRemote != "All or almost all the time (I'm full-time remote)" & so_data$HomeRemote != "Never", ]
+    
+    mean(all_remote$JobSatisfaction, na.rm=TRUE)
+    mean(some_remote$JobSatisfaction, na.rm=TRUE)
+    mean(never_remote$JobSatisfaction, na.rm=TRUE)
+})
+```
+Again, using the Crunch package’s methods are faster. But not only that, we don’t have to worry about the information in each column staying in the same order. With the download then process approach, if we reordered the `JobSatisfaction` column, our `is_all_remote` mask would no longer correspond to the correct values, and our means would be totally wrong[^fn2]. Using Crunch filters and the mean calculation provided by the Crunch package is immune to this, because the values are connected within rows on the server.
+
+## Cross tabulations
+We’ve already started looking at how `JobSatisfaction` varies by `HomeRemote` status using a fairly course grouping by filtering the rows to use in each mean. We can approach this in a more systematic way by using cross tabulations. Cross tabulations (also known as crosstabs or contingency tables) is one way to show the relationship between two variables. With Crunch, cross tabulations are incredibly easy (in the web app, it’s literally drag and drop), and the best part is that we still don’t have to transfer lots of data from Crunch. And let’s face it: crosstabs make up the majority of analyses and deliverables when conducting survey research.
+
+To start off, let’s look at two categorical responses `HomeRemote` and `EmploymentStatus`. This shows the number of responses for each response of `EmploymentStatus` and the `HomeRemote` questions.
+```{r, results='hide'}
+home_employmnet_crtab <- crtabs(~HomeRemote+EmploymentStatus, so_data)
+home_employmnet_crtab
+```
+```{r, echo=FALSE, results='asis'}
+kable(as.array(
+    home_employmnet_crtab
+))
+```
+
+
+We can easily make a prop table or look at the margins from this crosstab:
+```{r, results='hide'}
+prop.table(home_employmnet_crtab)
+```
+```{r, echo=FALSE, results='asis'}
+kable(
+    prop.table(home_employmnet_crtab)
+)
+```
+
+If all we are interested in are the counts for a single column, we can specify just a single column
+```{r}
+crtabs(~HomeRemote, so_data)
+```
+
+Crunch’s `crtabs` function is more than just simple cross-tabs, it's designed to be the Crunch version of base R’s `xtabs`. We could even do n-way crosstabs with a command like `crtabs(~HomeRemote+EmploymentStatus+CompanyType, so_data)`
+
+Now that we’ve seen the power of cross tabulation, we can return to the relationship between `HomeRemote` and `JobSatisfaction`. Here we are tabulating the mean for `JobSatisfaction` for each response from the `HomeRemote` question.
+```{r}
+crtabs(mean(JobSatisfaction)~HomeRemote, so_data)
+```
+
+## Clean and manipulate variables
+Up until now we’ve seen a few times that the “NA” response for `HomeRemote` (and some other variables) acts like any other response, and is not being treated as missing. We don’t actually want to treat “NA” like a response like “Never” however. Additionally, the order of the responses is not in any sort of natural order.
+
+Let’s see what the categories of this variable looks like. We can think of these as expanded factors from R: instead of only having level labels, Crunch maintains a number of other items of metadata for each level. Crunch shows the ids, names, values, and missing status when we use `categories` with a categorical variable.
+```{r}
+categories(so_data$HomeRemote)
+```
+
+One way we could try to fix this would be to download the column again, substitute all NAs with `NA`, reorder the factor, and then send them back to Crunch.
+```{r}
+clearCache() # let’s make this a fair fight
+system.time({
+    home_var <- as.vector(so_data$HomeRemote)
+    home_var[home_var == "NA"] <- NA
+    home_var <- droplevels(home_var)
+    home_var <- factor(home_var, levels = c("Never",
+                                            "A few days each month",
+                                            "Less than half the time, but at least one day each week",
+                                            "About half the time",
+                                            "More than half, but not all, the time",
+                                            "All or almost all the time (I'm full-time remote)",
+                                            "It's complicated"))
+    so_data[['HomeRemoteCleaned']] <- home_var
+})
+```
+
+But we can do this even quicker and easier with the power of Crunch. Not only are these changes fewer lines of R code, but they also make their changes on the server, so any collaborators will be able to see the changes you make immediately. No more waiting around to download data or send Crunch a new round of cleaned exports. 
+```{r}
+clearCache() # let’s make this a fair fight
+system.time({
+    is.na(categories(so_data$HomeRemote)) <- "NA"
+    cats_in_order <- c("Never",
+                       "A few days each month",
+                       "Less than half the time, but at least one day each week",
+                       "About half the time",
+                       "More than half, but not all, the time",
+                       "All or almost all the time (I'm full-time remote)",
+                       "It's complicated", "NA", "No Data")
+    categories(so_data$HomeRemote) <- categories(so_data$HomeRemote)[cats_in_order]    
+})
+```
+
+Now the categories look much better: “NA” is marked as missing, the responses are ordered from least to most home/remote time.
+```{r}
+categories(so_data$HomeRemote)
+```
+
+Categorical variables in Crunch support more complex missing value than R does, multiple categories can be marked as missing: there’s not just one single “NA” value. For this variable, the “It’s complicated” response doesn’t really fit in with the other responses either. With Crunch we can mark it as missing so that it doesn’t show up like other categories, but importantly, all of that data is still there if we need it. Additionally, we can set numeric values for each level. Here, we are using a rough percentage of time spent at home based on the responses. These numeric values can be anything we want: They don't have to be just integers or restricted to being evenly spaced. 
+```{r}
+is.na(categories(so_data$HomeRemote)) <- "It's complicated"
+values(categories(so_data$HomeRemote)) <- c(0, 0.15, 0.3, 0.5, 0.75, 1.0, NA, NA, NA)
+```
+
+Here’s what our final `HomeRemote` variable looks like.
+```{r}
+categories(so_data$HomeRemote)
+```
+
+And we can see how this reflects in our previous cross tabulation as well. We can now see much easier here that it does look like there is higher job satisfaction among people who are full-time remote compared with those who never work at home in this survey.
+```{r}
+crtabs(mean(JobSatisfaction)~HomeRemote, so_data)
+```
+
+
+## Other data manipulation
+There are a bunch of repetitive cleaning tasks that Crunch makes easy. First, let’s add variable identifiers for text and numeric variables. With a few lines of R code we are able to change many variable names at the same time.
+```{r}
+text_vars <- variables(so_data)[types(variables(so_data)) == "text"]
+names(text_vars) <- paste(names(text_vars), "- text")
+
+numeric_vars <- variables(so_data)[types(variables(so_data)) == "numeric"]
+names(numeric_vars) <- paste(names(numeric_vars), "- numeric")
+```
+
+Another common task is to derive a new variable based on the contents or one or more other variables. With `makeCaseVaraible`, all we have to do is provide a sequence of cases, each with a logical expression that can span multiple variables. Say we wanted to classify professional and student contributors to open source software separately from those who don’t contribute at all. Using `makeCaseVariable` saves us from having to download all of the data for both of these columns when all we really need to do is reference the category labels.
+
+```{r}
+case_statements <- list(
+    list(expression=so_data$Professional == "Professional developer" &
+                    so_data$ProgramHobby %in% c("Yes, I contribute to open source projects", "Yes, both"),
+         name="Professional open source contributor"),
+    list(expression=so_data$Professional == "Student" &
+                    so_data$ProgramHobby %in% c("Yes, I contribute to open source projects", "Yes, both"),
+         name="Student open source contributor"),
+    list(expression=so_data$ProgramHobby %in% c("No", "Yes, I program as a hobby"),
+         name="Open source non-contributor"))
+
+so_data[['OScontributor']] <- makeCaseVariable(cases=case_statements,
+    name = "Open source contribution (professional/student)")
+
+so_data[['OScontributor']]
+```
+
+## `as.data.frame` is helpful for connecting with functions that want a dataframe
+To get an even more data-frame like object, `as.data.frame` will produce a _Crunch dataframe_ object which acts more like a standard R dataframe, but still doesn’t pull all of the data from the Crunch server. This is useful for functions that require a dataframe `data` argument (like `lm`). The special part of _Crunch dataframes_ is that although they act like regular dataframes (e.g. you get R vectors when you access its columns), the data for each column is only retrieved when it is needed. 
+
+Using `as.data.frame`, we can fit a linear regression with a single predictor of `HomeRemote` predicting `JobSatisfaction`. The syntax for `lm` is exactly the same as it would be to use a local dataframe. But because we are using a _Crunch dataframe_, only the data that `lm` needs is transferred and only when R needs it.
+```{r, warning=FALSE}
+so_df <- as.data.frame(so_data)
+fit <- lm(JobSatisfaction~HomeRemote, data=so_df)
+coefplot(fit, lwdOuter = 0.5, intercept = FALSE)
+```
+
+We can also use our _Crunch dataframe_ with `ggplot` to see this same relationship. Note, because we set both “NA” and “It’s complicated” in Crunch both are subsumed under the `NA` category.
+
+```{r, warning=FALSE, message=FALSE}
+ggplot(so_df) + aes(x = HomeRemote, y = JobSatisfaction) + 
+    geom_point(position = 'jitter', alpha = 0.05) +
+    geom_smooth(mapping = aes(x = as.numeric(HomeRemote), y = JobSatisfaction),  method = "lm") +
+    theme(axis.text.x=element_text(angle = 45, hjust = 1)) +
+    labs(title="Job satisfaciton by remote work", y = "Job satisfaction", x = "Amount of remote work")
+```
+
+## When you need all (or much) of the data.
+If the analysis you want to run isn't implemented on Crunch, and you do need to get all of the data, writing a csv is the easiest and fastest way to pull everything. This usually isn’t necessary, but sometimes you need all of the data at your fingertips. In those situations, writing a csv is much quicker than pulling data down column-by-column.
+```{r, results='hide', eval=FALSE}
+write.csv(so_data, "dataout.csv")
+so_data_dump <- read.csv("dataout.csv")
+```
+
+```{r, include=FALSE}
+with_consent(delete(so_data))
+```
+
+
+[^fn1]: `as.vector` has an argument `mode` that will let us tell Crunch how to send information from _Categorical_ variables. We can send it as either a factor with `factor` the numeric value that is stored for each level (explained in more detail below) with `numeric`, or finally ids with `id`.
+
+[^fn2]: Astute readers will contend that this is the result of pulling down columns instead of the full dataset as a dataframe, which would maintain the 2 dimensional nature of this dataset. This is absolutely true, although pulling the full dataset would take even longer to get all of the data from the server.
+
